@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/weather_icon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/city_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/weather_icon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="6dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:textSize="16sp"
+        tools:text="city_name"
+        android:textColor="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/current_temp"
+        android:layout_alignTop="@id/weather_icon"
+        tools:text="25 °C"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignRight="@id/weather_icon"
+        android:layout_alignEnd="@id/weather_icon"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/temp_max_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:layout_toEndOf="@id/weather_icon"
+        android:layout_toRightOf="@id/weather_icon"
+        android:text="@string/temp_max_text" />
+
+    <TextView
+        android:id="@+id/temp_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        android:layout_toEndOf="@id/temp_max_text"
+        android:layout_toRightOf="@id/temp_max_text"
+        android:textColor="@color/colorPrimary"
+        tools:text="temp_max" />
+
+    <TextView
+        android:id="@+id/temp_min_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_max_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/weather_icon"
+        android:layout_toRightOf="@id/weather_icon"
+        android:text="@string/temp_min_text" />
+
+
+    <TextView
+        android:id="@+id/temp_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/temp_min"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@id/temp_min_text"
+        android:layout_toRightOf="@id/temp_min_text"
+        tools:text="temp_min" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/weather_icon"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout_spinner_button">
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/weather_button"
+            android:text="@string/ok"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout_spinner_button"
+        android:id="@+id/linearLayout_GPS"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_longitude"
+            tools:text="longitude"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView_latitude"
+            tools:text="latitude"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/gps"
+            android:id="@+id/button_gps"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_below="@id/linearLayout_GPS">
+
+        <com.google.android.gms.maps.MapView
+
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

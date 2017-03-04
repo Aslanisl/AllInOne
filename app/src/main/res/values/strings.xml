@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">All In One</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="city">Город :</string>
+    <string name="temp_max_text">Мак темп:</string>
+    <string name="temp_min_text">Мин темп:</string>
+    <string name="ok">Ok</string>
+    <string name="gps">GPS</string>
+    <string name="gps_checked">GPS</string>
+    <string name="network">Network</string>
+
+    <string-array name="cities_names">
+        <item>Kirov</item>
+        <item>Sankt-Peterburg</item>
+        <item>Moscow</item>
+        <item>Nizhniy Novgorod</item>
+        <item>Yekaterinburg</item>
+    </string-array>
+    <string name="title_activity_drawer">DrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+</resources>
