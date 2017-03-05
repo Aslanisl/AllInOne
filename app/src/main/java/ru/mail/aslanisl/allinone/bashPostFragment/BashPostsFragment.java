@@ -25,6 +25,8 @@ import static android.widget.Toast.makeText;
 
 public class BashPostsFragment extends Fragment {
 
+    public static final String API_RESOURCE_NAME = "bash";
+
     RecyclerView mPostsRecycleView;
     Toolbar mToolBar;
     List<BushPostModel> mPosts;
@@ -35,9 +37,6 @@ public class BashPostsFragment extends Fragment {
 
     public static BashPostsFragment newInstance(int sectionNumber) {
         BashPostsFragment fragment = new BashPostsFragment();
-        Bundle args = new Bundle();
-        args.putInt("Bush post", sectionNumber);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -61,17 +60,19 @@ public class BashPostsFragment extends Fragment {
         BushPostsAdapter adapter = new BushPostsAdapter(container.getContext(), mPosts);
         mPostsRecycleView.setAdapter(adapter);
 
-        mCallPost = App.getApiBush().getData("bash", mPostLoaded);
+        mCallPost = App.getApiBush().getData(API_RESOURCE_NAME, mPostLoaded);
         mCallPostRandom = App.getApiBush().getRandomData(mPostRandomLoaded);
 
         mCallPost.enqueue(new Callback<List<BushPostModel>>() {
             @Override
             public void onResponse(Call<List<BushPostModel>> call, Response<List<BushPostModel>> response) {
-                mPosts.addAll(response.body());
+                if (response.isSuccessful()) {
+                    mPosts.addAll(response.body());
 
-                mPostsRecycleView.getAdapter().notifyDataSetChanged();
+                    mPostsRecycleView.getAdapter().notifyDataSetChanged();
 
-                mPostLoaded =+ 50;
+                    mPostLoaded =+ 50;
+                }
             }
 
             @Override
@@ -98,11 +99,13 @@ public class BashPostsFragment extends Fragment {
             mCallPost.enqueue(new Callback<List<BushPostModel>>() {
                 @Override
                 public void onResponse(Call<List<BushPostModel>> call, Response<List<BushPostModel>> response) {
-                    mPosts.addAll(response.body());
+                    if (response.isSuccessful()) {
+                        mPosts.addAll(response.body());
 
-                    mPostsRecycleView.getAdapter().notifyDataSetChanged();
+                        mPostsRecycleView.getAdapter().notifyDataSetChanged();
 
-                    mPostLoaded += 50;
+                        mPostLoaded += 50;
+                    }
                 }
 
                 @Override
@@ -115,11 +118,13 @@ public class BashPostsFragment extends Fragment {
                 mCallPostRandom.enqueue(new Callback<List<BushPostModel>>() {
                     @Override
                     public void onResponse(Call<List<BushPostModel>> call, Response<List<BushPostModel>> response) {
-                        mPosts.addAll(response.body());
+                        if (response.isSuccessful()) {
+                            mPosts.addAll(response.body());
 
-                        mPostsRecycleView.getAdapter().notifyDataSetChanged();
+                            mPostsRecycleView.getAdapter().notifyDataSetChanged();
 
-                        mPostRandomLoaded += 50;
+                            mPostRandomLoaded += 50;
+                        }
                     }
 
                     @Override
@@ -137,7 +142,9 @@ public class BashPostsFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
 
-        mCallPost.cancel();
-        mCallPostRandom.cancel();
+        if (mCallPost != null)
+            mCallPost.cancel();
+        if (mCallPostRandom != null)
+            mCallPostRandom.cancel();
     }
 }

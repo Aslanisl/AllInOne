@@ -73,9 +73,6 @@ public class WeatherFragment extends Fragment implements View.OnClickListener, A
 
     public static WeatherFragment newInstance(int sectionNumber) {
         WeatherFragment fragment = new WeatherFragment();
-        Bundle args = new Bundle();
-        args.putInt("Weather", sectionNumber);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -168,17 +165,19 @@ public class WeatherFragment extends Fragment implements View.OnClickListener, A
         mCallWeatherByCity.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
-                mCityName.setText(response.body().getName());
+                if (response.isSuccessful()) {
+                    mCityName.setText(response.body().getName());
 
-                mTempMin.setText(String.format(Locale.ENGLISH, "%.1f °C",
-                        response.body().getMain().getTempMin()));
-                mTempMax.setText(String.format(Locale.ENGLISH, "%.1f °C",
-                        response.body().getMain().getTempMax()));
-                mTempCurrent.setText(String.format(Locale.ENGLISH, "%.1f °C",
-                        response.body().getMain().getTemp()));
+                    mTempMin.setText(String.format(Locale.ENGLISH, "%.1f °C",
+                            response.body().getMain().getTempMin()));
+                    mTempMax.setText(String.format(Locale.ENGLISH, "%.1f °C",
+                            response.body().getMain().getTempMax()));
+                    mTempCurrent.setText(String.format(Locale.ENGLISH, "%.1f °C",
+                            response.body().getMain().getTemp()));
 
-                Picasso.with(getActivity()).load("http://openweathermap.org/img/w/"
-                        + response.body().getWeather().get(0).getIcon() + ".png").into(mWeatherIcon);
+                    Picasso.with(getActivity()).load("http://openweathermap.org/img/w/"
+                            + response.body().getWeather().get(0).getIcon() + ".png").into(mWeatherIcon);
+                }
             }
 
             @Override
@@ -232,9 +231,9 @@ public class WeatherFragment extends Fragment implements View.OnClickListener, A
     public void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
-        if (mCallWeatherByCity.isExecuted())
+        if (mCallWeatherByCity != null)
         mCallWeatherByCity.cancel();
-        else if (mCallWeatherByCoord.isExecuted())
+        else if (mCallWeatherByCoord != null)
         mCallWeatherByCoord.cancel();
     }
 

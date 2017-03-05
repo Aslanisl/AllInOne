@@ -37,9 +37,6 @@ public class NewsFragment extends Fragment {
 
     public static NewsFragment newInstance(int sectionNumber) {
         NewsFragment fragment = new NewsFragment();
-        Bundle args = new Bundle();
-        args.putInt("News", sectionNumber);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -63,10 +60,11 @@ public class NewsFragment extends Fragment {
         mCallNewsSource.enqueue(new Callback<News>() {
             @Override
             public void onResponse(Call<News> call, Response<News> response) {
+                if (response.isSuccessful()) {
+                    mListNewsSource.addAll(response.body().getSources());
 
-                mListNewsSource.addAll(response.body().getSources());
-
-                mNewsRecycleView.getAdapter().notifyDataSetChanged();
+                    mNewsRecycleView.getAdapter().notifyDataSetChanged();
+                }
             }
 
             @Override

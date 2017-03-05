@@ -15,6 +15,10 @@ import ru.mail.aslanisl.allinone.weatherFragment.WeatherFragment;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    public static final String PAGE_NUMBER_ONE = "Анектоды";
+    public static final String PAGE_NUMBER_TWO = "Погода";
+    public static final String PAGE_NUMBER_THREE = "Новости";
+
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -23,9 +27,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-//            return PlaceholderFragment.newInstance(position + 1);
         switch (position){
             case 0:
+
                 return BashPostsFragment.newInstance(position);
 
             case 1:
@@ -48,11 +52,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0:
-                return "Анектоды";
+                return PAGE_NUMBER_ONE;
             case 1:
-                return "Погода";
+                return PAGE_NUMBER_TWO;
             case 2:
-                return "Новости";
+                return PAGE_NUMBER_THREE;
         }
         return null;
     }

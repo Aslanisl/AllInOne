@@ -13,6 +13,10 @@ import ru.mail.aslanisl.allinone.api.OpenWeatherMapApi;
 
 public class App extends Application {
 
+    public static final String URL_BUSH = "http://www.umori.li/api/";
+    public static final String URL_OPEN_WEATHER = "http://api.openweathermap.org/";
+    public static final String URL_NEWS = "https://newsapi.org/";
+
     private static BushPostApi bushPostApi;
     private static OpenWeatherMapApi openWeatherMapApi;
     private static NewsApi newsApi;
@@ -29,14 +33,14 @@ public class App extends Application {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofitBush = new Retrofit.Builder()
-                .baseUrl("http://www.umori.li/api/")
+                .baseUrl(URL_BUSH)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
         bushPostApi = retrofitBush.create(BushPostApi.class);
 
         retrofitOpenWeatherMap = new Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/")
+                .baseUrl(URL_OPEN_WEATHER)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
@@ -44,7 +48,7 @@ public class App extends Application {
         openWeatherMapApi = retrofitOpenWeatherMap.create(OpenWeatherMapApi.class);
 
         retrofitNewApi = new Retrofit.Builder()
-                .baseUrl(" https://newsapi.org/")
+                .baseUrl(URL_NEWS)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
