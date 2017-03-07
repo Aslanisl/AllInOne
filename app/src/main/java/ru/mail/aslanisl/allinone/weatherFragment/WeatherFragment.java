@@ -71,11 +71,6 @@ public class WeatherFragment extends Fragment implements View.OnClickListener, A
 
     LocationService mLocationService;
 
-    public static WeatherFragment newInstance(int sectionNumber) {
-        WeatherFragment fragment = new WeatherFragment();
-        return fragment;
-    }
-
     public WeatherFragment() {
     }
 

@@ -35,11 +35,6 @@ public class BashPostsFragment extends Fragment {
     int mPostLoaded = 50;
     int mPostRandomLoaded = 50;
 
-    public static BashPostsFragment newInstance(int sectionNumber) {
-        BashPostsFragment fragment = new BashPostsFragment();
-        return fragment;
-    }
-
     public BashPostsFragment() {
     }
 

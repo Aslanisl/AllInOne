@@ -29,17 +29,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position){
             case 0:
-
-                return BashPostsFragment.newInstance(position);
+                return new BashPostsFragment();
 
             case 1:
-                return WeatherFragment.newInstance(position);
+                return new WeatherFragment();
 
             case 2:
-                return NewsFragment.newInstance(position);
+                return new NewsFragment();
         }
 
-        return BashPostsFragment.newInstance(position);
+        return new BashPostsFragment();
     }
 
     @Override
